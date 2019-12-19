@@ -22,8 +22,10 @@ struct Result: Codable {
 }
 
 struct ContentView: View {
-    @State var results = [Result]()
-    @State var searchTerm = ""
+    @State private var results = [Result]()
+    @State private var searchTerm = ""
+    @State private var searchType = 0
+    let types = ["Song", "Album"]
     var disableForm: Bool {
         searchTerm == ""
     }
@@ -32,9 +34,16 @@ struct ContentView: View {
         Form{
             Section {
                 ZStack{
-                    TextField("Text Here", text: $searchTerm)
+                    TextField("Enter Term", text: $searchTerm)
                 }
                 .frame(height: 20)
+            }
+            Section (header: Text("Song or Artist?")) {
+                Picker("Search Type", selection: $searchType) {
+                    ForEach(0 ..< types.count) {
+                        Text(self.types[$0])
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
             }
             Section {
                 Button(action: {
@@ -64,7 +73,7 @@ struct ContentView: View {
     }
     
     func loadData() {
-        guard let url = URL(string: "https://itunes.apple.com/search?term=\(searchTerm.replacingOccurrences(of: " ", with: "+"))&entity=song") else {
+        guard let url = URL(string: "https://itunes.apple.com/search?term=\(searchTerm.replacingOccurrences(of: " ", with: "+"))&entity=\(types[searchType].lowercased())") else {
             print("Invalid URL")
             return
         }
