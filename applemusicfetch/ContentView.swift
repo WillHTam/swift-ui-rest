@@ -21,8 +21,19 @@ struct Result: Codable {
     var artworkUrl30: URL
 }
 
+struct albumResponse: Codable {
+    var albumResults: [albumResult]
+}
+
+struct albumResult: Codable {
+    var collectionName: String
+    var releaseDate: String
+    var artworkUrl60: URL
+}
+
 struct ContentView: View {
     @State private var results = [Result]()
+    @State private var albumResults = [albumResult]()
     @State private var searchTerm = ""
     @State private var searchType = 0
     let types = ["Song", "Album"]
@@ -38,7 +49,7 @@ struct ContentView: View {
                 }
                 .frame(height: 20)
             }
-            Section (header: Text("Song or Artist?")) {
+            Section (header: Text("Song or Album?")) {
                 Picker("Search Type", selection: $searchType) {
                     ForEach(0 ..< types.count) {
                         Text(self.types[$0])
@@ -46,12 +57,19 @@ struct ContentView: View {
                 }.pickerStyle(SegmentedPickerStyle())
             }
             Section {
-                Button(action: {
-                    self.loadData()
-                }){
-                    Text("Search")
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        self.loadData()
+                    }){
+                        Text("Search")
+                    }
+                    .disabled(disableForm)
+                    .cornerRadius(10)
+                    .frame(width:200, height: 40)
+                    .font(.headline)
+                    Spacer()
                 }
-                .disabled(disableForm)
             }
             Section {
                 List(results.prefix(12), id: \.trackId) {
@@ -79,7 +97,7 @@ struct ContentView: View {
         }
 
         let request = URLRequest(url: url)
-
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
