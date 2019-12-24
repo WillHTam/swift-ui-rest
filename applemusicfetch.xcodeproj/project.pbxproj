@@ -28,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3DEE7F3C23AB7AC20071A9DB /* applemusicfetch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = applemusicfetch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DEE7F3C23AB7AC20071A9DB /* MusicSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DEE7F3F23AB7AC20071A9DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DEE7F4123AB7AC20071A9DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3DEE7F4323AB7AC20071A9DB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		3DEE7F3D23AB7AC20071A9DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3DEE7F3C23AB7AC20071A9DB /* applemusicfetch.app */,
+				3DEE7F3C23AB7AC20071A9DB /* MusicSearch.app */,
 				3DEE7F5223AB7AC40071A9DB /* applemusicfetchTests.xctest */,
 			);
 			name = Products;
@@ -129,7 +129,7 @@
 				3DEE7F6423AB8F6F0071A9DB /* URLImage */,
 			);
 			productName = applemusicfetch;
-			productReference = 3DEE7F3C23AB7AC20071A9DB /* applemusicfetch.app */;
+			productReference = 3DEE7F3C23AB7AC20071A9DB /* MusicSearch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3DEE7F5123AB7AC40071A9DB /* applemusicfetchTests */ = {
@@ -372,6 +372,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"applemusicfetch/Preview Content\"";
+				DEVELOPMENT_TEAM = N5R2QA773L;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = applemusicfetch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -379,7 +380,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bearlabs.applemusicfetch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MusicSearch;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -391,6 +392,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"applemusicfetch/Preview Content\"";
+				DEVELOPMENT_TEAM = N5R2QA773L;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = applemusicfetch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -398,7 +400,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bearlabs.applemusicfetch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MusicSearch;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

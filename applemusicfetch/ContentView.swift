@@ -14,26 +14,16 @@ struct Response: Codable {
 }
 
 struct Result: Codable {
-    var trackId: Int
-    var trackName: String
+//    var trackId: Int
+    var trackName: String?
+    var collectionId: Int
     var collectionName: String
-    var trackPrice: Double
-    var artworkUrl30: URL
-}
-
-struct albumResponse: Codable {
-    var albumResults: [albumResult]
-}
-
-struct albumResult: Codable {
-    var collectionName: String
-    var releaseDate: String
     var artworkUrl60: URL
+    var releaseDate: String
 }
 
 struct ContentView: View {
     @State private var results = [Result]()
-    @State private var albumResults = [albumResult]()
     @State private var searchTerm = ""
     @State private var searchType = 0
     let types = ["Song", "Album"]
@@ -54,7 +44,8 @@ struct ContentView: View {
                     ForEach(0 ..< types.count) {
                         Text(self.types[$0])
                     }
-                }.pickerStyle(SegmentedPickerStyle())
+                }
+                .pickerStyle(SegmentedPickerStyle())
             }
             Section {
                 HStack {
@@ -68,19 +59,33 @@ struct ContentView: View {
                     .cornerRadius(10)
                     .frame(width:200, height: 40)
                     .font(.headline)
+                    .onTapGesture {
+                        let keyWindow = UIApplication.shared.connectedScenes
+                                           .filter({$0.activationState == .foregroundActive})
+                                           .map({$0 as? UIWindowScene})
+                                           .compactMap({$0})
+                                           .first?.windows
+                                           .filter({$0.isKeyWindow}).first
+                        keyWindow!.endEditing(true)
+                    }
                     Spacer()
                 }
             }
             Section {
-                List(results.prefix(12), id: \.trackId) {
+                List(results.prefix(12), id: \.collectionId) {
                     item in
                     HStack {
-                        URLImage(item.artworkUrl30)
+                        URLImage(item.artworkUrl60)
                         VStack(alignment: .leading){
-                            Text(item.trackName)
+                            if self.searchType == 0 {
+                                Text(item.trackName ?? "")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                            }
+                            Text(item.collectionName)
                                 .font(.headline)
                                 .foregroundColor(.primary)
-                            Text(item.collectionName)
+                            Text(item.releaseDate)
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                         }
